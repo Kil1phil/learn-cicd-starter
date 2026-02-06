@@ -33,6 +33,9 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: "1.25.1"
+    
+      - name : go fmt
+        run : go fmt ./...
 
-      - name: go fmt
-        run : test -z $(go fmt ./...) 
+      - name: check go fmt
+        run : test -z $(go fmt ./...)
