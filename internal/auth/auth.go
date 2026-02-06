@@ -6,8 +6,6 @@ import (
 	"strings"
 )
 
-
-
 var ErrNoAuthHeaderIncluded = errors.New("no authorization header included")
 
 // GetAPIKey -
@@ -24,4 +22,3 @@ func GetAPIKey(headers http.Header) (string, error) {
 
 	return splitAuth[1], nil
 }
-
