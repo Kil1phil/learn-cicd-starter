@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-
+        "time"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
 	"github.com/joho/godotenv"
@@ -91,6 +91,10 @@ func main() {
 	srv := &http.Server{
 		Addr:    ":" + port,
 		Handler: router,
+		ReadHeaderTimeout: 5 * time.Second, // max. Zeit, um den HTTP‑Header zu lesen
+                ReadTimeout:       5 * time.Second, // max. Zeit, um den gesamten Request‑Body zu lesen
+                WriteTimeout:      10 * time.Second, // max. Zeit, um die Antwort zu schreiben
+                IdleTimeout:       30 * time.Second, // Zeit, nach der inaktive Keep‑Alive‑Verbindungen geschlossen werden
 	}
 
 	log.Printf("Serving on port: %s\n", port)
